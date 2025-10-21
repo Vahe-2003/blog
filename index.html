@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JS ֆունկցիաների օրինակներ</title>
+  <script src="tasks.js"></script>
+</head>
+<body>
+  <h2>Բոլոր ֆունկցիաների օրինակները տես Console-ում (F12)</h2>
+
+  <script>
+    console.log("1:", roundToTwo(3.14159)); // 3.14
+    console.log("2:", isNumber("abc")); // false
+    console.log("3:", numberLength(12345)); // 5
+    console.log("4:", getIntegerPart(9.87)); // 9
+    console.log("5:", toUpperCase("hello")); // HELLO
+    console.log("6:", containsWord("I love JavaScript", "love")); // true
+    console.log("7:", replaceSpaces("Hello world JS")); // Hello_world_JS
+    console.log("8:", firstAndLastThree("JavaScript")); // Javipt
+    console.log("9:", trimString("   Hi JS   ")); // "Hi JS"
+    console.log("10:", stringLength("Armenia")); // 7
+
+    let arr = [1, 2, 3];
+    console.log("11:", addElement(arr, 4)); // [1,2,3,4]
+    console.log("12:", removeLastElement([10,20,30])); // [10,20]
+    console.log("13:", firstGreaterThanTenIndex([5,8,12,4])); // 2
+    console.log("14:", filterEvenNumbers([1,2,3,4,5,6])); // [2,4,6]
+    console.log("15:", multiplyByTwo([1,2,3])); // [2,4,6]
+    console.log("16:", sumArray([1,2,3,4])); // 10
+    console.log("17:", containsElement([1,2,3], 2)); // true
+    console.log("18:", mergeArrays([1,2],[3,4])); // [1,2,3,4]
+    console.log("19:", sliceArray([10,20,30,40,50])); // [20,30,40]
+    console.log("20:", sortAscending([5,2,8,1])); // [1,2,5,8]
+
+    const obj = {a:1, b:2, c:3};
+    console.log("21:", getObjectKeys(obj)); // ["a","b","c"]
+    console.log("22:", getObjectValues(obj)); // [1,2,3]
+    console.log("23:", hasKey(obj, "b")); // true
+    console.log("24:", mergeObjects({a:1}, {b:2})); // {a:1,b:2}
+    console.log("25:", getEntries({x:10, y:20})); // [["x",10],["y",20]]
+  </script>
+</body>
+</html>
