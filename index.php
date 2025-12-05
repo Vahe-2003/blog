@@ -1,64 +1,74 @@
+<?php
+require_once "classes.php";
+
+$students = [
+    new Student("Անի", "Սահակյան", "AN1234567", "+37491222333", 20, 18.5, "Ինֆորմատիկա", 2),
+    new Student("Գագիկ", "Պետրոսյան", "AA0099887", "+37493887766", 21, 17.2, "Ֆիզիկա", 3),
+    new Student("Մարիա", "Գևորգյան", "AM5566778", "+37494556677", 19, 19.1, "Կենսաբանություն", 1),
+];
+?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hy">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="index.css">
+    <title>Student List</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background: #f1f1f1;
+        }
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            background: white;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #777;
+            text-align: left;
+        }
+        th {
+            background: #444;
+            color: white;
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+    </style>
+
 </head>
 <body>
-    <form  method="POST" action="formsubmit.php" enctype="multipart/form-data">
-    <label>Անուն (First Name)</label><br>
-        <input type="text" name="first_name" required><br><br>
-    <label>Ազգանուն (Last Name)</label><br>
-        <input type="text" name="last_name" required><br><br>
-    <label>Էլ. փոստ (Email)</label><br>
-        <input type="email" name="email" required><br><br>
-    <label>Գաղտնաբառ (Password)</label><br>
-        <input type="password" name="password"><br><br>
-    <label>Գաղտնաբառի հաստատում</label><br>
-        <input type="password" name="confirm_password"><br><br>
-    <label>Օգտանուն (Username)</label><br>
-        <input type="text" name="username"><br><br>
-    <label>Հեռախոսահամար</label><br>
-        <input type="tel" name="phone"><br><br>
-    <label>Ծննդյան ամսաթիվ</label><br>
-        <input type="date" name="birthdate"><br><br>
-    <label>Սեռ</label><br><br>
-        <input type="radio" name="gender" value="male"> Տղա
-        <input type="radio" name="gender" value="female"> Աղջիկ<br><br>
-    <label>Հասցե</label><br>
-        <textarea name="address" rows="4"></textarea><br><br>
-        <button type="submit">Գրանցվել</button>
-    <label> Ֆայլ </label><br>
-        <input type="file" name="file" id="photo"><br>
-</form>
-<?php
- session_start();
- if(isset($_SESSION['errors']) && !empty($_SESSION['errors'])) {
-    foreach ($_SESSION['errors']as $errors) {
-        echo "<p style='color:red;'>{$errors}</p>";
-    }
-} elseif (isset($_SESSION['success'])) {
-    echo "<p style='color:green;'>{$_SESSION['success']}</p>";
-}
 
-if(isset($_SESSION['errors'])) {
-    foreach($_SESSION['errors'] as $error) {
-        echo "<p style='color:red;'>$error</p>";
-    }
-    unset($_SESSION['errors']);
-}
+<h2>Ուսանողների տվյալներ</h2>
 
-if(isset($_SESSION['success'])) {
-    echo "<p style='color:green;'>{$_SESSION['success']}</p>";
-    if(isset($_SESSION['uploaded_file'])) {
-        $uploadedFile = $_SESSION['uploaded_file'];
-        echo "<p>Վերբեռնված նկարն այստեղ է:</p>";
-        echo "<img src='images/$uploadedFile' alt='Uploaded Image' style='max-width:300px;'>";
-        unset($_SESSION['uploaded_file']);
-    }
-}
-?>
+<table>
+    <tr>
+        <th>Անուն</th>
+        <th>Ազգանուն</th>
+        <th>Անձնագրի համար</th>
+        <th>Հեռախոս</th>
+        <th>Տարիք</th>
+        <th>ՄՈԳ</th>
+        <th>Ֆակուլտետ</th>
+        <th>Կուրս</th>
+    </tr>
+
+    <?php foreach ($students as $s): ?>
+        <tr>
+            <td><?= $s->getFirstName() ?></td>
+            <td><?= $s->getLastName() ?></td>
+            <td><?= $s->getPassportId() ?></td>
+            <td><?= $s->getPhone() ?></td>
+            <td><?= $s->age ?></td>
+            <td><?= $s->gpa ?></td>
+            <td><?= $s->faculty ?></td>
+            <td><?= $s->course ?></td>
+        </tr>
+    <?php endforeach; ?>
+
+</table>
+
 </body>
-</html>  
+</html>
