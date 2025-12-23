@@ -1,43 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>JS ֆունկցիաների օրինակներ</title>
-  <script src="tasks.js"></script>
+    <meta charset="UTF-8">
+    <title>Tailwind Examples</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-  <h2>Բոլոր ֆունկցիաների օրինակները տես Console-ում (F12)</h2>
+<body class="bg-gray-50 p-6">
 
-  <script>
-    console.log("1:", roundToTwo(3.14159)); // 3.14
-    console.log("2:", isNumber("abc")); // false
-    console.log("3:", numberLength(12345)); // 5
-    console.log("4:", getIntegerPart(9.87)); // 9
-    console.log("5:", toUpperCase("hello")); // HELLO
-    console.log("6:", containsWord("I love JavaScript", "love")); // true
-    console.log("7:", replaceSpaces("Hello world JS")); // Hello_world_JS
-    console.log("8:", firstAndLastThree("JavaScript")); // Javipt
-    console.log("9:", trimString("   Hi JS   ")); // "Hi JS"
-    console.log("10:", stringLength("Armenia")); // 7
+    <!-- Օրինակ 1: Կոճակ -->
+    <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+        Click Me
+    </button>
 
-    let arr = [1, 2, 3];
-    console.log("11:", addElement(arr, 4)); // [1,2,3,4]
-    console.log("12:", removeLastElement([10,20,30])); // [10,20]
-    console.log("13:", firstGreaterThanTenIndex([5,8,12,4])); // 2
-    console.log("14:", filterEvenNumbers([1,2,3,4,5,6])); // [2,4,6]
-    console.log("15:", multiplyByTwo([1,2,3])); // [2,4,6]
-    console.log("16:", sumArray([1,2,3,4])); // 10
-    console.log("17:", containsElement([1,2,3], 2)); // true
-    console.log("18:", mergeArrays([1,2],[3,4])); // [1,2,3,4]
-    console.log("19:", sliceArray([10,20,30,40,50])); // [20,30,40]
-    console.log("20:", sortAscending([5,2,8,1])); // [1,2,5,8]
+    <!-- Օրինակ 2: Բորդերով քարտ -->
+    <div class="border border-gray-300 p-4 rounded shadow-md max-w-sm mx-auto mt-6">
+        <h2 class="text-lg font-bold mb-2">Card Title</h2>
+        <p class="text-gray-700">This is a simple card using Tailwind CSS.</p>
+    </div>
 
-    const obj = {a:1, b:2, c:3};
-    console.log("21:", getObjectKeys(obj)); // ["a","b","c"]
-    console.log("22:", getObjectValues(obj)); // [1,2,3]
-    console.log("23:", hasKey(obj, "b")); // true
-    console.log("24:", mergeObjects({a:1}, {b:2})); // {a:1,b:2}
-    console.log("25:", getEntries({x:10, y:20})); // [["x",10],["y",20]]
-  </script>
+    <!-- Օրինակ 3: Փոքր բազաֆորմ -->
+    <input type="text" placeholder="Your Name" class="border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 mt-6">
+
+    <!-- Օրինակ 4: Աքցենտ տեքստ -->
+    <p class="text-gray-700 text-sm italic mb-4 mt-6">
+        This is a small italic text.
+    </p>
+
+    <!-- Օրինակ 5: Հորիզոնական Flex Layout (Navbar) -->
+    <div class="flex justify-between items-center p-4 bg-gray-100 rounded mt-6">
+        <span class="font-bold text-blue-500">Logo</span>
+        <nav>
+            <ul class="flex space-x-4">
+                <li><a href="#" class="text-gray-700 hover:text-blue-500">Home</a></li>
+                <li><a href="#" class="text-gray-700 hover:text-blue-500">About</a></li>
+                <li><a href="#" class="text-gray-700 hover:text-blue-500">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
 </body>
 </html>

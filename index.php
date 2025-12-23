@@ -1,74 +1,179 @@
 <?php
-require_once "classes.php";
-
-$students = [
-    new Student("Անի", "Սահակյան", "AN1234567", "+37491222333", 20, 18.5, "Ինֆորմատիկա", 2),
-    new Student("Գագիկ", "Պետրոսյան", "AA0099887", "+37493887766", 21, 17.2, "Ֆիզիկա", 3),
-    new Student("Մարիա", "Գևորգյան", "AM5566778", "+37494556677", 19, 19.1, "Կենսաբանություն", 1),
+$page = isset($_GET['page']) ? $_GET['page'] : 'home';
+$news_data = [
+    'education' => [
+        ["title"=>"New Online University Courses Launched", "desc"=>"Several new online courses are now available for students worldwide."],
+        ["title"=>"Education Reform in 2025", "desc"=>"Governments introduce new standards to improve quality of education."],
+        ["title"=>"Scholarship Programs Open", "desc"=>"Various scholarships are now open for international students."],
+        ["title"=>"Virtual Classrooms Expand Globally", "desc"=>"Schools are increasingly adopting virtual classrooms for remote learning."],
+        ["title"=>"Teacher Training Programs Updated", "desc"=>"New programs launched to improve teacher skills."],
+        ["title"=>"Student Exchange Opportunities", "desc"=>"Universities expand student exchange programs internationally."]
+    ],
+    'technology' => [
+        ["title"=>"AI Breakthrough in 2025", "desc"=>"Researchers develop an AI that can compose music autonomously."],
+        ["title"=>"New Smartphone Released", "desc"=>"A major company releases a cutting-edge smartphone."],
+        ["title"=>"Cybersecurity Updates", "desc"=>"Latest cybersecurity measures are now being implemented worldwide."],
+        ["title"=>"Quantum Computing Advances", "desc"=>"Quantum computing shows significant progress in problem solving."],
+        ["title"=>"New Social Media Platform Launch", "desc"=>"A new social media platform is attracting millions of users."],
+        ["title"=>"Virtual Reality in Education", "desc"=>"VR technologies are increasingly used in learning environments."]
+    ],
+    'health' => [
+        ["title"=>"Healthy Eating Tips", "desc"=>"Nutritionists share advice for a balanced diet."],
+        ["title"=>"New Vaccine Developed", "desc"=>"A new vaccine is now available for seasonal diseases."],
+        ["title"=>"Mental Health Awareness", "desc"=>"Campaigns launched to improve mental health awareness."],
+        ["title"=>"Fitness Apps Trending", "desc"=>"More people are using apps to track their workouts."],
+        ["title"=>"Importance of Sleep", "desc"=>"Experts explain how sleep affects overall health."],
+        ["title"=>"Yoga for Stress Relief", "desc"=>"Yoga is increasingly recommended for mental well-being."]
+    ]
 ];
 ?>
+
 <!DOCTYPE html>
-<html lang="hy">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Student List</title>
-
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 40px;
-            background: #f1f1f1;
-        }
-        table {
-            border-collapse: collapse;
-            width: 80%;
-            background: white;
-        }
-        th, td {
-            padding: 12px;
-            border: 1px solid #777;
-            text-align: left;
-        }
-        th {
-            background: #444;
-            color: white;
-        }
-        h2 {
-            margin-bottom: 20px;
-        }
-    </style>
-
+    <title>News Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-gray-100 font-sans min-h-screen flex flex-col">
+<header class="bg-green-600 text-white p-4 shadow-md">
+    <div class="container mx-auto flex justify-between items-center">
 
-<h2>Ուսանողների տվյալներ</h2>
+        <h1 class="text-xl font-bold">NewsPortal</h1>
+        <nav>
+            <ul class="flex space-x-6">
+                <li><a href="index.php?page=home" class="hover:text-gray-200">Home</a></li>
+                <li><a href="index.php?page=education" class="hover:text-gray-200">Education</a></li>
+                <li><a href="index.php?page=technology" class="hover:text-gray-200">Technology</a></li>
+                <li><a href="index.php?page=health" class="hover:text-gray-200">Health</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
 
-<table>
-    <tr>
-        <th>Անուն</th>
-        <th>Ազգանուն</th>
-        <th>Անձնագրի համար</th>
-        <th>Հեռախոս</th>
-        <th>Տարիք</th>
-        <th>ՄՈԳ</th>
-        <th>Ֆակուլտետ</th>
-        <th>Կուրս</th>
-    </tr>
+<main class="container mx-auto mt-8 px-4 flex-grow">
 
-    <?php foreach ($students as $s): ?>
-        <tr>
-            <td><?= $s->getFirstName() ?></td>
-            <td><?= $s->getLastName() ?></td>
-            <td><?= $s->getPassportId() ?></td>
-            <td><?= $s->getPhone() ?></td>
-            <td><?= $s->age ?></td>
-            <td><?= $s->gpa ?></td>
-            <td><?= $s->faculty ?></td>
-            <td><?= $s->course ?></td>
-        </tr>
-    <?php endforeach; ?>
+<?php
+// if ($page == 'home') {
+    // echo "<h2 class='text-2xl font-bold mb-4 text-gray-800'>Latest News from All Categories</h2>";
+    // echo "<div class='mb-6'>";
+    // echo "<img src='images/2430120-01.png' alt='Main News' class='w-full h-48 object-cover rounded mb-4'>";
+    // echo "</div>";
 
-</table>
+    // foreach ($news_data as $category => $items) {
+    //     $first = $items[0]; 
+    //     echo "<div class='mb-6 bg-white p-4 rounded shadow'>";
+    //     echo "<h3 class='text-xl font-bold text-gray-800 mb-2'>". ucfirst($category) .": {$first['title']}</h3>";
+    //     echo "<p class='text-gray-700'>{$first['desc']}</p>";
+    //     echo "</div>";
+    // }
+
+// if ($page == 'home') {
+//     echo '
+//     <div class="bg-white rounded-xl shadow-lg p-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+
+//         <div>
+//             <h2 class="text-4xl font-extrabold text-green-700 leading-tight mb-4">
+//                 THIS IS MY <br> BANNER TEXT
+//             </h2>
+
+//             <p class="text-gray-600 text-lg mb-8">
+//                 This is My Paragraph Header
+//             </p>
+
+//             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+//                 <div class="bg-green-100 p-4 rounded-lg text-sm text-gray-700">
+//                     This section contains simple descriptive text
+//                 </div>
+
+//                 <div class="bg-green-600 text-white p-4 rounded-lg text-sm font-medium">
+//                     This section has highlighted content
+//                 </div>
+
+//                 <div class="bg-green-100 p-4 rounded-lg text-sm text-gray-700">
+//                     This section supports the main idea
+//                 </div>
+//             </div>
+//         </div>
+
+//         <div class="flex justify-center">
+//             <img src="images/2430120-01.png"
+//                  alt="Website Preview"
+//                  class="w-full max-w-md rounded-lg shadow-md">
+//         </div>
+
+//     </div>
+//     ';
+// }
+
+// } elseif (isset($news_data[$page])) {
+//     echo "<h2 class='text-2xl font-bold mb-4 text-gray-800'>". ucfirst($page) ." News</h2>";
+    
+//     foreach ($news_data[$page] as $item) {
+//         echo "<div class='mb-6 bg-white p-4 rounded shadow'>";
+//         echo "<h2 class='text-xl font-bold text-gray-800 mb-2'>{$item['title']}</h2>";
+//         echo "<p class='text-gray-700'>{$item['desc']}</p>";
+//         echo "</div>";
+//     }
+// } else {
+//     echo "<p class='text-gray-700'>Page not found.</p>";
+// }
+if ($page == 'home') {
+    echo '
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+
+        <div class="ml-6 md:ml-12">
+            <h2 class="text-5xl md:text-5xl font-extrabold text-green-700 leading-tight mb-6">
+                STAY INFORMED <br> STAY AHEAD
+            </h2>
+
+            <p class="text-gray-600 text-lg mb-8">
+                Your trusted source for breaking news <br>
+                in education,technology and health 
+            </p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div class="bg-green-100 p-4 text-sm text-gray-700">
+                    New Online University Courses Launched
+                </div>
+
+                <div class="bg-green-600 text-white p-4 text-sm font-medium">
+                    Researchers develop an AI that can compose music autonomously.
+                </div>
+
+                <div class="bg-green-100 p-4 text-sm text-gray-700">
+                    Nutritionists share advice for a balanced diet.
+                </div>
+            </div>
+        </div>
+        <div class="flex justify-center -mt-8">
+            <img src="images/2430120-01.png"
+                 alt="Website Preview"
+                 class="w-full max-w-xl md:max-w-3xl transform scale-105">
+        </div>
+    </div>
+    ';
+}
+elseif (isset($news_data[$page])) {
+    echo "<h2 class='text-2xl font-bold mb-4 text-gray-800'>". ucfirst($page) ." News</h2>";
+    
+    foreach ($news_data[$page] as $item) {
+        echo "<div class='mb-6 bg-white p-4 shadow'>";
+        echo "<h2 class='text-xl font-bold text-gray-800 mb-2'>{$item['title']}</h2>";
+        echo "<p class='text-gray-700'>{$item['desc']}</p>";
+        echo "</div>";
+    }
+}
+else {
+    echo "<p class='text-gray-700'>Page not found.</p>";
+}
+?>
+
+</main>
+
+<footer class="bg-gray-800 text-white p-4 text-center mt-12">
+    &copy; 2025 NewsPortal. All rights reserved.
+</footer>
 
 </body>
 </html>
